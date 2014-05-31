@@ -33,6 +33,7 @@ gem 'spring',        group: :development
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'haml'
 gem 'devise'
 
 group :production do
@@ -45,7 +46,6 @@ end
 group :development, :test do 
   gem 'sqlite3'
   gem 'debugger'
-  gem 'haml'
   gem 'erb2haml'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
