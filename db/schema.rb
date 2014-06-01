@@ -51,11 +51,8 @@ ActiveRecord::Schema.define(version: 20140531215847) do
     t.string   "title"
     t.text     "content"
     t.boolean  "private"
-    t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "wikis", ["owner_id"], name: "index_wikis_on_owner_id"
 
 end

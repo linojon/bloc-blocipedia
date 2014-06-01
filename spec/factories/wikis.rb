@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :wiki do
-    title "MyString"
+    sequence(:title) { |n| "Page #{n}" }
     content "MyText"
     private false
-    owner nil
   end
 end
