@@ -40,8 +40,6 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
-  # Use sqlite3 as the database for Active Record
-
 
 group :development, :test do 
   gem 'sqlite3'
@@ -51,4 +49,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'capybara'
+  gem 'shoulda-matchers'
 end
