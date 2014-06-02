@@ -13,20 +13,24 @@ describe "home page and layout" do
     end
 
     context "signed in" do
-      before :all do
-        sign_in_as_a_valid_user
+      before :each do
+        user = create(:user)
+        sign_in user
       end
 
       it "has link to sign out" do
         expect(page).to have_selector("header", text: "Sign out")
       end
 
-      xit "has link to edit profile" do
+      it "has link to edit profile" do
         expect(page).to have_selector("header", text: "Profile")
       end
 
       xit "has link to account"
-      xit "login redirects to wikis index"
+
+      it "login redirects to wikis index" do
+        expect(current_path).to eql '/wikis'
+      end
 
     end
 
