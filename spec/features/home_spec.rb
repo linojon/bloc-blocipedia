@@ -7,12 +7,27 @@ describe "home page and layout" do
   end
 
   context "header" do
-    xit "has link to sign in"
+    it "has link to sign in" do
+      visit "/"
+      expect(page).to have_selector("header", text: "Sign in")
+    end
 
     context "signed in" do
-      xit "has link to sign out"
-      xit "has link to edit profile"
+      before :all do
+        sign_in_as_a_valid_user
+      end
+
+      it "has link to sign out" do
+        expect(page).to have_selector("header", text: "Sign out")
+      end
+
+      xit "has link to edit profile" do
+        expect(page).to have_selector("header", text: "Profile")
+      end
+
       xit "has link to account"
+      xit "login redirects to wikis index"
+
     end
 
     xit "has link to sign up for free account"
