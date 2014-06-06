@@ -32,6 +32,10 @@ describe "home page and layout" do
         expect(current_path).to eql '/wikis'
       end
 
+      it "home page redirects to wikis index" do
+        visit '/'
+        expect(current_path).to eql '/wikis'
+      end
     end
 
     xit "has link to sign up for free account"

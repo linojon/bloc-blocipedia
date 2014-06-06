@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :wiki do
-    sequence(:title) { |n| "Page #{n}" }
+    sequence(:title) { |n| "Wiki #{n}" }
     content "MyText"
     private false
   end
