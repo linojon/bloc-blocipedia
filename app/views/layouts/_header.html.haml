@@ -1,6 +1,21 @@
-%header
-  - if current_user
-    = link_to 'Profile', '#'
-    = link_to 'Sign out', destroy_user_session_path, method: :delete
-  - else
-    = link_to 'Sign in', new_user_session_path
+%nav.navbar.navbar-inverse
+  .container-fluid
+    / mobile 
+    .navbar-header
+      %button.navbar-toggle{ type: :button, 'data-toggle' => 'collapse', 'data-target' => '#navbar-collapse'}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{ href: '#' } Linopedia
+  
+    #navbar-collapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li= link_to 'Wikis', wikis_path
+
+      %ul.nav.navbar-nav.navbar-right
+        - if current_user
+          %li= link_to 'Profile', '#'
+          %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+        - else
+          %li= link_to 'Sign in', new_user_session_path

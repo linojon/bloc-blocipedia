@@ -36,6 +36,7 @@ gem 'spring',        group: :development
 gem 'haml'
 gem 'devise'
 gem 'simple_form'
+gem 'bootstrap-sass', '~> 3.1.1'
 
 group :production do
   gem 'pg'
