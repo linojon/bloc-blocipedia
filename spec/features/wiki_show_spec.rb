@@ -17,7 +17,11 @@ describe "/wikis/dogs show" do
       expect(page).to have_content(wiki.title)
     end
 
-    xit "shows wiki with formatted markdown content"
+    it "shows wiki with formatted markdown content" do
+      # factory content = "**MyText**"
+      expect(page).to have_selector('strong', text: 'MyText')
+    end
+
     xit "uses friendly url"
   end
 

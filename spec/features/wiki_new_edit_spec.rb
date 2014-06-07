@@ -39,7 +39,7 @@ describe "/wikis new and edit" do
 
     it "can edit title, content, and save" do
       expect(page).to have_field('Title', with: 'Wiki 1')
-      expect(page).to have_field('Content', with: 'MyText')
+      expect(page).to have_field('Content', with: '**MyText**')
       fill_in 'Title', with: 'Hello Title'
       fill_in 'Content', with: 'Hello world.'
       click_button 'Update Wiki'
