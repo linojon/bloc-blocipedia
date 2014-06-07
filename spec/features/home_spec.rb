@@ -9,7 +9,7 @@ describe "home page and layout" do
   context "header" do
     it "has link to sign in" do
       visit "/"
-      expect(page).to have_selector("header", text: "Sign in")
+      expect(page).to have_selector("nav", text: "Sign in")
     end
 
     context "signed in" do
@@ -19,11 +19,11 @@ describe "home page and layout" do
       end
 
       it "has link to sign out" do
-        expect(page).to have_selector("header", text: "Sign out")
+        expect(page).to have_selector("nav", text: "Sign out")
       end
 
       it "has link to edit profile" do
-        expect(page).to have_selector("header", text: "Profile")
+        expect(page).to have_selector("nav", text: "Profile")
       end
 
       xit "has link to account"
