@@ -38,6 +38,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'redcarpet'
+gem 'friendly_id', '~> 5.0.0'
 
 group :production do
   gem 'pg'

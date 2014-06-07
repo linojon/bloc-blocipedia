@@ -10,7 +10,7 @@ describe "/wikis/dogs show" do
 
   context "render" do
     before :each do
-      visit "/wikis/#{wiki.id}"
+      visit "/wikis/#{wiki.to_param}"
     end
 
     it "shows title" do
@@ -22,7 +22,9 @@ describe "/wikis/dogs show" do
       expect(page).to have_selector('strong', text: 'MyText')
     end
 
-    xit "uses friendly url"
+    it "uses friendly url" do
+      expect(wiki.to_param).to eql wiki.title.gsub(' ','-').downcase
+    end
   end
 
   context "as public" do

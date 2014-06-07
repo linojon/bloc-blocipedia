@@ -5,7 +5,7 @@ class WikisController < ApplicationController
   end
 
   def show
-    @wiki = Wiki.find params[:id]
+    @wiki = Wiki.friendly.find params[:id]
     raise "not authorized" if @wiki.private? && !@wiki.collaborators.include?(current_user)
   end
 
@@ -14,7 +14,7 @@ class WikisController < ApplicationController
   end
 
   def edit
-    @wiki = Wiki.find params[:id]
+    @wiki = Wiki.friendly.find params[:id]
   end
 
   def create
@@ -28,7 +28,7 @@ class WikisController < ApplicationController
   end
 
   def update
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     if @wiki.update_attributes(wiki_params)
       redirect_to @wiki
     else

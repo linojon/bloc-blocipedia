@@ -32,14 +32,14 @@ describe "/wikis new and edit" do
     let(:wiki) { create :wiki }
 
     before :each do
-      visit "/wikis/#{wiki.id}/edit"
+      visit "/wikis/#{wiki.to_param}/edit"
     end
 
     xit "requires user signed in"
 
     it "can edit title, content, and save" do
-      expect(page).to have_field('Title', with: 'Wiki 1')
-      expect(page).to have_field('Content', with: '**MyText**')
+      expect(page).to have_field('Title', with: wiki.title )
+      expect(page).to have_field('Content', with: wiki.content )
       fill_in 'Title', with: 'Hello Title'
       fill_in 'Content', with: 'Hello world.'
       click_button 'Update Wiki'
