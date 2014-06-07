@@ -35,6 +35,7 @@ gem 'spring',        group: :development
 
 gem 'haml'
 gem 'devise'
+gem 'simple_form'
 
 group :production do
   gem 'pg'
@@ -49,5 +50,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'capybara'
+  gem 'launchy'
   gem 'shoulda-matchers'
 end
