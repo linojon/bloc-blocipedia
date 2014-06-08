@@ -2,6 +2,7 @@ class WikisController < ApplicationController
 
   def index
     @wikis = Wiki.not_private
+    @wikis = (@wikis + current_user.wikis).uniq if current_user
   end
 
   def show

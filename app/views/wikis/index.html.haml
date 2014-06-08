@@ -2,5 +2,5 @@
 %ul
   = render @wikis
 
-%p
-  = link_to 'New Wiki', new_wiki_path
+- if policy(Wiki.new).create?
+  %p= link_to 'New Wiki', new_wiki_path

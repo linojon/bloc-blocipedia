@@ -4,4 +4,8 @@ class WikiPolicy < ApplicationPolicy
     !record.private? || (user && record.collaborators.include?(user))
   end
 
+  def create?
+    user
+  end
+
 end
