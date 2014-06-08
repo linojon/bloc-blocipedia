@@ -1,6 +1,6 @@
 %h1 Wikis
-%ul
+%table.table.table-striped
   = render @wikis
 
 - if policy(Wiki.new).create?
-  %p= link_to 'New Wiki', new_wiki_path
+  %p= link_to 'New Wiki', new_wiki_path, class: 'btn btn-primary'
