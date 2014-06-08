@@ -40,9 +40,8 @@ describe "/wikis/dogs show" do
 
     it "flash error on private wikis" do
       pwiki = create :wiki, private: true
-      expect {
-        visit "/wikis/#{pwiki.to_param}"
-      }.to raise_error("not authorized")
+      visit "/wikis/#{pwiki.to_param}"
+      expect(page).to have_content 'not authorized'
     end
   end
 

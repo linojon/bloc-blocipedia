@@ -6,7 +6,7 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.friendly.find params[:id]
-    raise "not authorized" if @wiki.private? && !@wiki.collaborators.include?(current_user)
+    authorize @wiki
   end
 
   def new

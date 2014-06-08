@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    attr_extras (3.0.0)
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
@@ -104,6 +105,8 @@ GEM
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.5)
+    pundit (0.2.3)
+      activesupport (>= 3.0.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -195,6 +198,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  attr_extras
   bootstrap-sass (~> 3.1.1)
   capybara
   coffee-rails (~> 4.0.0)
@@ -209,6 +213,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   pg
+  pundit
   rails (= 4.1.1)
   rails_12factor
   redcarpet

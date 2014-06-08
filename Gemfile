@@ -39,6 +39,8 @@ gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'redcarpet'
 gem 'friendly_id', '~> 5.0.0'
+gem 'pundit'
+gem 'attr_extras' #for pundit
 
 group :production do
   gem 'pg'
