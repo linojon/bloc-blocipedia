@@ -11,10 +11,15 @@ describe "/wikis index" do
   context "as public" do
     it "displays list of the public wikis" do
       visit "/wikis"
-      expect(page).to have_content( wikis.first.title )
-      expect(page).to have_content( wikis.last.title )
+      expect(page).to have_content( wikis[0].title )
+      expect(page).to have_content( wikis[4].title )
     end
-    xit "doesnt show private wikis"
+    it "doesnt show private wikis" do
+      priv = wikis[4]
+      priv.update_attribute :private, true
+      visit "/wikis"
+      expect(page).to have_no_content( wikis[4].title )
+    end
   end
 
   context "signed in" do
