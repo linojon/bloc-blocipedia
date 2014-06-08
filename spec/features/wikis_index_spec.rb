@@ -1,24 +1,17 @@
 require 'spec_helper'
 
 describe "/wikis index" do
-  let(:user) { create :user }
-  let(:wikis) { 1.upto(5).map { create(:wiki) } }
-
-  before :each do
-    user.wikis = wikis
-  end
+  let!(:user) { create :user_with_wikis }
 
   context "as public" do
     it "displays list of the public wikis" do
       visit "/wikis"
-      expect(page).to have_content( wikis[0].title )
-      expect(page).to have_content( wikis[4].title )
+      expect(page).to have_content( user.wikis[0].title )
+      expect(page).to have_content( user.wikis[1].title )
     end
     it "doesnt show private wikis" do
-      priv = wikis[4]
-      priv.update_attribute :private, true
       visit "/wikis"
-      expect(page).to have_no_content( wikis[4].title )
+      expect(page).to have_no_content( user.wikis[2].title )
     end
   end
 

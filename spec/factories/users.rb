@@ -6,5 +6,13 @@ FactoryGirl.define do
     email "test@example.com"
     password "secretsecret"
     password_confirmation "secretsecret"
+
+    factory :user_with_wikis do
+      after(:create) do |user, evaluator|
+        user.wikis << create( :wiki)
+        user.wikis << create( :wiki)
+        user.wikis << create( :private_wiki)
+      end
+    end
   end
 end
