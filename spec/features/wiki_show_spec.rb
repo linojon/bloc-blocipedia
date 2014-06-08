@@ -28,14 +28,22 @@ describe "/wikis/dogs show" do
   end
 
   context "as public" do
-    it "flash error not found wikis" do
+    before :each do
       visit '/'
       Capybara.current_session.driver.header 'Referer', page.current_url
+    end
+     
+    it "flash error not found wikis" do
       visit "/wikis/666"
       expect(page).to have_content 'not found'
     end
 
-    xit "flash error on private wikis" 
+    it "flash error on private wikis" do
+      pwiki = create :wiki, private: true
+      expect {
+        visit "/wikis/#{pwiki.to_param}"
+      }.to raise_error("not authorized")
+    end
   end
 
   context "as collaborator" do
