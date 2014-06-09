@@ -8,5 +8,6 @@ class Wiki < ActiveRecord::Base
   friendly_id :title, use: :slugged
 
   scope :not_private, -> { where(private: false) }
+  scope :is_private,  -> { where(private: true) }
 
 end

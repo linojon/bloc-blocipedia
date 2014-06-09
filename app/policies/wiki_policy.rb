@@ -5,7 +5,11 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def create?
-    user
+    user.present?
+  end
+
+  def update?
+    user && user.role_for(record) == 'owner'
   end
 
 end

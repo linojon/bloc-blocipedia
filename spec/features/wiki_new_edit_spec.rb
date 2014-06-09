@@ -46,5 +46,7 @@ describe "/wikis new and edit" do
       expect(page).to have_content('Hello Title')
       expect(page).to have_content('Hello world.')
     end
+
+    xit "can delete if owner"
   end
  end
