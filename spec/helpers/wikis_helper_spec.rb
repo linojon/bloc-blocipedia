@@ -11,5 +11,19 @@ require 'spec_helper'
 #   end
 # end
 describe WikisHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "markdown" do
+    it "formats basic markdown" do
+      text = 
+%Q{# Header
+This is **bold** text
+
+}
+      html = 
+%Q{<h1>Header</h1>
+
+<p>This is <strong>bold</strong> text</p>
+}
+      expect(helper.markdown(text)).to eql(html)
+    end
+  end
 end

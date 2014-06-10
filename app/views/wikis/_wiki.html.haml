@@ -1,4 +1,4 @@
 %tr
   %td= link_to wiki.title, wiki
-  %td
+  %td.controls
     = link_to( 'edit', edit_wiki_path(wiki), class: 'btn btn-default btn-sm' ) if policy(wiki).update?
