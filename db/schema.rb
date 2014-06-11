@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607070033) do
+ActiveRecord::Schema.define(version: 20140611035059) do
+
+  create_table "accounts", force: true do |t|
+    t.string   "level",      default: "free"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id"
 
   create_table "collaborations", force: true do |t|
     t.integer  "user_id"

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "/wikis index" do
-  let!(:user) { create :user_with_wikis }
+  let!(:user) { create :premium_user }
   let!(:other_user) { create :user_with_wikis }
   let(:public_wikis) { Wiki.where(private: false) }
   let(:private_wikis) { Wiki.where(private: true) }

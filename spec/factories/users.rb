@@ -11,6 +11,13 @@ FactoryGirl.define do
     factory :user_with_wikis do
       after(:create) do |user, evaluator|
         user.wikis << create(:wiki)
+      end
+    end
+
+    factory :premium_user do
+      after(:create) do |user, evaluator|
+        user.account.update_attribute :level, 'premium'
+        user.wikis << create(:wiki)
         user.wikis << create(:private_wiki)
       end
     end

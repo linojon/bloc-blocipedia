@@ -15,7 +15,11 @@
 
       %ul.nav.navbar-nav.navbar-right
         - if current_user
-          %li= link_to 'Profile', '#'
+          - if current_user.account.premium?
+            %li= link_to 'Account', account_path(current_user.account)
+          - else
+            %li= link_to 'Upgrade Now!', new_account_path
+          %li= link_to 'Profile', edit_user_registration_path
           %li= link_to 'Sign out', destroy_user_session_path, method: :delete
         - else
           %li= link_to 'Sign in', new_user_session_path

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "/wikis/dogs show" do
-  let(:user) { create :user_with_wikis }
+  let(:user) { create :premium_user }
   let(:wiki) { user.wikis.not_private.first }
 
   context "render" do

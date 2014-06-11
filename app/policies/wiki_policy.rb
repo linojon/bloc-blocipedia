@@ -24,4 +24,8 @@ class WikiPolicy < ApplicationPolicy
     user && user.role_for(record) == 'owner'
   end
 
+  def make_private?
+    user && user.account.premium?
+  end
+
 end

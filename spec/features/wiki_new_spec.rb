@@ -33,7 +33,19 @@ describe "/wikis new" do
     end
 
     xit "can preview"
-    xit "can make private with Premium acct"
-    xit "shows validation errors and doesnt save"
+
+    xit "cannot make private" do
+      expect(page).to_not have_selector( "input#wiki_private")
+    end
+
+    it "requires title and doesnt save" do
+      click_button 'Create Wiki'
+      expect(page).to have_content "Error creating wiki"
+      expect(page).to have_selector( "#wiki_title + span", text: "can't be blank")
+    end
+
+    context "with Premium acct" do
+      xit "can make private"
+    end
   end
  end

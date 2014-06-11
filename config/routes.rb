@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :accounts
+
   resources :collaborations
 
   resources :wikis do

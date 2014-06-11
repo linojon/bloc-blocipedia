@@ -26,7 +26,9 @@ describe "home page and layout" do
         expect(page).to have_selector("nav", text: "Profile")
       end
 
-      xit "has link to account"
+      it "has link to upgrade account" do
+        expect(page).to have_selector("nav", text: "Upgrade Now!")
+      end
 
       it "login redirects to wikis index" do
         expect(current_path).to eql '/wikis'
@@ -35,6 +37,17 @@ describe "home page and layout" do
       it "home page redirects to wikis index" do
         visit '/'
         expect(current_path).to eql '/wikis'
+      end
+    end
+
+    context "signed in with premium acct" do
+      before :each do
+        user = create(:premium_user)
+        sign_in user
+      end
+
+      it "has link to account" do
+        expect(page).to have_selector("nav", text: 'Account')
       end
     end
 
