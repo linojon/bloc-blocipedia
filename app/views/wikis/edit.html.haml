@@ -1,2 +1,6 @@
 %h1 Edit Wiki
 = render "form"
+
+- if policy(@wiki).destroy?
+  %br
+  .btn.btn-default= link_to "Delete", @wiki, method: :delete, data: { confirm: "Are you sure?" }

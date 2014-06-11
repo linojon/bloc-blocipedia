@@ -19,9 +19,10 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = current_user.wikis.build(wiki_params)
+    @wiki = Wiki.new wiki_params
     authorize @wiki
     if @wiki.save
+      current_user.collaborations.create wiki: @wiki
       redirect_to @wiki, notice: "Wiki was saved successfully"
     else
       flash[:error] = "Error creating wiki. Please try again"
@@ -36,6 +37,16 @@ class WikisController < ApplicationController
       flash[:error] = "Error saving wiki. Please try again"
       render :edit
     end
+  end
+
+  def destroy
+    if @wiki.destroy
+      redirect_to wikis_path, notice: "\"#{@wiki.title}\" was deleted successfully."
+    else
+      flash[:error] = "There was an error deleting the topic."
+      render :show
+    end
+
   end
 
   def collaborators

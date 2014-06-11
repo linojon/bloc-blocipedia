@@ -22,8 +22,13 @@ describe "/wikis index" do
       expect(page).to_not have_link("edit", href: "/wikis/#{public_wikis.first.to_param}/edit")
     end
 
-    xit "cannot delete"
-    xit "cannot change collaborators"
+    it "cannot change collaborators" do
+      expect(page).to_not have_link("collaborators", href: "/wikis/#{public_wikis.to_param}/collaborators")
+    end
+
+    it "cannot delete" do
+      expect(page).to_not have_link("delete", href: "/wikis/#{public_wikis.to_param}")
+    end
 
     it "doesnt show private wikis" do
       expect(page).to have_no_content( private_wikis.first.title )
@@ -57,14 +62,20 @@ describe "/wikis index" do
         expect(page).to have_link("edit", href: "/wikis/#{my_wiki.to_param}/edit")
       end
 
-      xit "can change collaborators"
+      it "can change collaborators" do
+        expect(page).to have_link("collaborators", href: "/wikis/#{my_wiki.to_param}/collaborators")
+      end
+
+      it "can delete" do
+        expect(page).to have_link("delete", href: "/wikis/#{my_wiki.to_param}")
+      end
     end
 
     context "collaborating wikis" do
       let(:other_wiki) { other_user.wikis.first }
 
       before :each do
-        create :collaboration, user: user, wiki: other_wiki
+        create :collaboration, user: user, wiki: other_wiki, role: 'collaborator'
         visit '/wikis'
       end
 
@@ -76,7 +87,9 @@ describe "/wikis index" do
         expect(page).to have_link("edit", href: "/wikis/#{other_wiki.to_param}/edit")
       end
 
-      xit "cannot change collaborators"
+      it "cannot change collaborators" do
+        expect(page).to_not have_link("collaborators", href: "/wikis/#{other_wiki.to_param}/collaborators")
+      end
     end
   end
 end

@@ -1,12 +1,8 @@
 require 'spec_helper'
 
 describe "/wikis/dogs show" do
-  let(:user) { create :user }
-  let(:wiki) { create :wiki }
-
-  before :each do
-    user.wikis << wiki
-  end
+  let(:user) { create :user_with_wikis }
+  let(:wiki) { user.wikis.not_private.first }
 
   context "render" do
     before :each do
@@ -39,17 +35,35 @@ describe "/wikis/dogs show" do
     end
 
     it "flash error on private wikis" do
-      pwiki = create :wiki, private: true
+      pwiki = user.wikis.is_private.first
       visit "/wikis/#{pwiki.to_param}"
       expect(page).to have_content 'not authorized'
     end
   end
 
   context "as collaborator" do
-    xit "shows edit button"
+    let(:collaborator) { create :user }
+
+    before :each do
+      wiki.collaborations.create user_id: collaborator.id, role: 'collaborator'
+      sign_in collaborator
+      visit "/wikis/#{wiki.to_param}"
+    end
+
+    it "shows edit button" do
+      expect(page).to have_link "Edit"
+    end
   end
 
   context "as owner" do
-    xit "shows delete button"
+    let(:user) { create :user_with_wikis }
+    before :each do
+      sign_in user
+      visit "/wikis/#{wiki.to_param}"
+    end
+
+    it "shows edit button" do
+      expect(page).to have_link "Edit"
+    end
   end
 end

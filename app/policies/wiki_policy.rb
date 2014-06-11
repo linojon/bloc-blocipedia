@@ -12,6 +12,10 @@ class WikiPolicy < ApplicationPolicy
     user && record.collaborators.include?(user)
   end
 
+  def destroy?
+    user && user.role_for(record) == 'owner'
+  end    
+
   def collaborators?
     update_collaborators?
   end

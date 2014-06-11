@@ -1,4 +1,6 @@
 %tr
   %td= link_to wiki.title, wiki
   %td.controls
-    = link_to( 'edit', edit_wiki_path(wiki), class: 'btn btn-default btn-sm' ) if policy(wiki).update?
+    = link_to( 'edit', edit_wiki_path(wiki), class: 'btn btn-default btn-sm' ) if policy(wiki).edit?
+    = link_to( 'collaborators', collaborators_wiki_path(wiki), class: 'btn btn-default btn-sm' ) if policy(wiki).collaborators?
+    = link_to( 'delete', wiki, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-default btn-sm' ) if policy(wiki).destroy?
