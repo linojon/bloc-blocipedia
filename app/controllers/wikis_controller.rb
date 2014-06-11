@@ -1,13 +1,13 @@
 class WikisController < ApplicationController
 
+  before_action :find_and_authorize_wiki, except: [:index, :new, :create]
+
   def index
     @wikis = Wiki.not_private
     @wikis = (@wikis + current_user.wikis).uniq if current_user
   end
 
   def show
-    @wiki = Wiki.friendly.find params[:id]
-    authorize @wiki
   end
 
   def new
@@ -16,8 +16,6 @@ class WikisController < ApplicationController
   end
 
   def edit
-    @wiki = Wiki.friendly.find params[:id]
-    authorize @wiki
   end
 
   def create
@@ -32,8 +30,6 @@ class WikisController < ApplicationController
   end
 
   def update
-    @wiki = Wiki.friendly.find(params[:id])
-    authorize @wiki
     if @wiki.update_attributes(wiki_params)
       redirect_to @wiki
     else
@@ -43,20 +39,21 @@ class WikisController < ApplicationController
   end
 
   def collaborators
-    @wiki = Wiki.friendly.find params[:id]
-    authorize @wiki
     @collaborators = @wiki.collaborators    
     @users = User.all
   end
 
   def update_collaborators
-    @wiki = Wiki.friendly.find params[:id]
-    authorize @wiki
     @wiki.replace_collaborators params[:collaborators]
     redirect_to collaborators_wiki_path(@wiki), notice: 'Collaborators updated'
   end
 
   private
+
+  def find_and_authorize_wiki
+    @wiki = Wiki.friendly.find params[:id]
+    authorize @wiki
+  end
 
   def wiki_params
     params.require(:wiki).permit(:title, :content, :private)
