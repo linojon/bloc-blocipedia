@@ -1,0 +1,9 @@
+%h1 Edit Account
+
+%p
+  Level:
+  = @account.level.capitalize
+
+- if !@account.premium?
+  .centered
+    = link_to "Upgrade Now!", new_charge_path, class: 'btn btn-primary'

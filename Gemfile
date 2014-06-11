@@ -41,6 +41,7 @@ gem 'redcarpet'
 gem 'friendly_id', '~> 5.0.0'
 gem 'pundit'
 gem 'attr_extras' #for pundit
+gem 'stripe'
 
 group :production do
   gem 'pg'

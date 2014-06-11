@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :accounts
+  resources :charges, only: [:new, :create]
 
-  resources :collaborations
+  resources :accounts, only: [:edit]
 
   resources :wikis do
     member do
