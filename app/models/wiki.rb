@@ -10,4 +10,13 @@ class Wiki < ActiveRecord::Base
   scope :not_private, -> { where(private: false) }
   scope :is_private,  -> { where(private: true) }
 
+  def replace_collaborators(user_ids)
+    collaborations.each {|c| c.destroy unless c.role == 'owner' }
+    if user_ids
+      user_ids.each do |uid|
+        self.collaborations.create user_id: uid, role: 'collaborator'
+      end
+    end
+  end
+
 end

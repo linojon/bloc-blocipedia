@@ -1,5 +1,9 @@
 @import "bootstrap";
 
-td.controls {
+td.controls, th.controls {
   text-align: right;
+}
+
+.centered {
+  text-align: center;
 }

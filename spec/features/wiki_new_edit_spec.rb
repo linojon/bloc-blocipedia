@@ -29,9 +29,10 @@ describe "/wikis new and edit" do
   end
 
   context "edit" do
-    let(:wiki) { create :wiki }
+    let(:wiki) { create(:wiki) }
 
     before :each do
+      user.wikis << wiki
       visit "/wikis/#{wiki.to_param}/edit"
     end
 

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :collaborations
 
-  resources :wikis
+  resources :wikis do
+    member do
+      get 'collaborators'
+      put 'update_collaborators'
+    end
+  end
 
   devise_for :users
 

@@ -12,7 +12,6 @@ FactoryGirl.define do
       after(:create) do |user, evaluator|
         user.wikis << create(:wiki)
         user.wikis << create(:private_wiki)
-        user.collaborations.create wiki: create(:wiki), role: 'collaborator'
       end
     end
   end

@@ -1,0 +1,19 @@
+%h1 Collaborators
+%p
+  Add Collaborators to the #{@wiki.title} Wiki (showing all users)
+
+
+= form_tag update_collaborators_wiki_path, method: :put do
+  %table.table.table-striped
+    %tr
+      %th Name
+      %th Email
+      %th Give Access
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td
+          = check_box_tag 'collaborators[]', user.id, @collaborators.include?(user), id: "collaborator_#{user.id}", disabled: (user == current_user)
+  .centered
+    = submit_tag 'Share Wiki', class: 'btn btn-primary'
