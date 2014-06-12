@@ -16,7 +16,8 @@ describe "/wikis new" do
 
     it "can input title, content, and save" do
       fill_in 'Title', with: 'Hello'
-      fill_in 'Content', with: 'Hello world.'
+      #fill_in 'Content', with: 'Hello world.'
+      find('#wiki_content', visible: false).set('Hello world.')
       expect {
         click_button 'Create Wiki'
       }.to change(Wiki, :count).by(1)
@@ -25,14 +26,16 @@ describe "/wikis new" do
 
     it "can input markdown content" do
       fill_in 'Title', with: 'Hello'
-      fill_in 'Content', with: '# Hello world.'
+      #fill_in 'Content', with: '# Hello world.'
+      find('#wiki_content', visible: false).set('# Hello world.')
       click_button 'Create Wiki'
       wiki = user.wikis.first
       visit "/wikis/#{wiki.to_param}"
       expect(page).to have_selector('h1', text: 'Hello world')
     end
 
-    xit "can preview"
+    # Requires js: true etc
+    # xit "can preview"
 
     it "cannot make private" do
       expect(page).to_not have_selector( "input#wiki_private")
@@ -59,7 +62,8 @@ describe "/wikis new" do
 
     it "can make private" do
       fill_in 'Title', with: 'Hello'
-      fill_in 'Content', with: 'Hello world.'
+      #fill_in 'Content', with: 'Hello world.'
+      find('#wiki_content', visible: false).set('Hello world.')
       check 'Private'
       expect {
         click_button 'Create Wiki'
