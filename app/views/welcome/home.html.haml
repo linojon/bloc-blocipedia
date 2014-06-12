@@ -1,9 +1,19 @@
-%h1 Linopedia: Social Wikis
-%h2 Create and share Markdown Wikis
-= link_to 'Sign up', new_user_registration_path
+.row.centered
+  %h1 Linopedia: Social Wikis
 
-%h2 Create as many public wikis as you want!
-%p link to Free Plan
+.row
+  .col-md-8.col-md-offset-2.centered  
+    %h2 Create and share Markdown Wikis
+    %p= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary'
 
-%h2 Create private wikis!
-%p link to Premium Plan
+.row
+  .col-md-4.col-md-offset-2.centered
+    .thumbnail
+      .caption
+        %h3 Free Plan
+        %p Create as many public wikis as you want! 
+  .col-md-4.centered
+    .thumbnail
+      .caption
+        %h3 Premium Plan
+        %p Create private wikis!

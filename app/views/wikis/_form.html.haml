@@ -1,6 +1,7 @@
 = simple_form_for @wiki, html: { class: 'form-horizontal' } do |f|
   = f.input :title
   = f.input :content, input_html: { size: '100x10' }
-  = f.input :private, boolean_style: :inline
+  - if policy(@wiki).make_private?
+    = f.input :private, boolean_style: :inline
   %br
   = f.button :submit, class: 'btn btn-primary'

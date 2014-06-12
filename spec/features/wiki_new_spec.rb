@@ -34,7 +34,7 @@ describe "/wikis new" do
 
     xit "can preview"
 
-    xit "cannot make private" do
+    it "cannot make private" do
       expect(page).to_not have_selector( "input#wiki_private")
     end
 
@@ -43,9 +43,28 @@ describe "/wikis new" do
       expect(page).to have_content "Error creating wiki"
       expect(page).to have_selector( "#wiki_title + span", text: "can't be blank")
     end
+  end
 
-    context "with Premium acct" do
-      xit "can make private"
+  context "with Premium acct" do
+    let(:premium_user) { create :premium_user }
+
+    before :each do
+      sign_in premium_user
+      visit "/wikis/new"
+    end
+
+    it "can mark private" do
+      expect(page).to have_selector( "input#wiki_private")
+    end
+
+    it "can make private" do
+      fill_in 'Title', with: 'Hello'
+      fill_in 'Content', with: 'Hello world.'
+      check 'Private'
+      expect {
+        click_button 'Create Wiki'
+      }.to change(Wiki, :count).by(1)
+      expect(premium_user.wikis.last).to be_private
     end
   end
  end
