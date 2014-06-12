@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :charges, only: [:new, :create]
 
-  resources :accounts, only: [:show]
+  get 'account' => 'accounts#show'
 
   resources :wikis do
     member do

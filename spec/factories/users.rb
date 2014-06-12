@@ -17,6 +17,7 @@ FactoryGirl.define do
     factory :premium_user do
       after(:create) do |user, evaluator|
         user.account.update_attribute :level, 'premium'
+        user.account.update_attribute :stripe_customer, '1234567890'
         user.wikis << create(:wiki)
         user.wikis << create(:private_wiki)
       end
