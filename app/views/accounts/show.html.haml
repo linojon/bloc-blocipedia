@@ -1,0 +1,16 @@
+%h1 Account
+%p= "For #{current_user.name}"
+%p= "Email: #{current_user.email}"
+
+%h3 Level:
+%p= @account.level.capitalize
+
+- if !@account.premium?
+  .centered
+    = link_to "Upgrade Now!", new_charge_path, class: 'btn btn-primary'
+
+- if @card
+  %h3 Card:
+  %p= "Type: #{@card['type']}"
+  %p= "Last 4 digits: #{@card['last4']}"
+  %p= "Expires: #{@card['exp_month']}/#{@card['exp_year']}"

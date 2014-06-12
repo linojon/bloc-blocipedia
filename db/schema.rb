@@ -14,7 +14,8 @@
 ActiveRecord::Schema.define(version: 20140611035059) do
 
   create_table "accounts", force: true do |t|
-    t.string   "level",      default: "free"
+    t.string   "level",           default: "free"
+    t.string   "stripe_customer"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

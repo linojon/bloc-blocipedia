@@ -34,11 +34,13 @@ class ChargesController < ApplicationController
     )
 
     #!!!
-    current_user.account.update_attribute(:level, 'premium')
+    current_user.account.stripe_customer = customer.id
+    current_user.account.level = 'premium'
+    current_user.account.save
 
     flash[:success] = "Thanks for all the money, #{current_user.name}! Feel free to pay me again."
 
-    redirect_to edit_account_path(current_user.account)
+    redirect_to account_path(current_user.account)
 
   # Stripe will send back CardErrors, with friendly messages
   # when something goes wrong.
