@@ -3,17 +3,21 @@
 
   = f.input :content, input_html: { style: "display:none" }
   #epiceditor
+  %p{ style: "font-style:italic" }
+    Content editor supports Markdown formatting. For help see the
+    %a{href: 'http://daringfireball.net/projects/markdown/basics'} Markdown Syntax
+    documentation. Preview your formatted text using the Preview button in the lower right corner.
 
   - if policy(@wiki).make_private?
     = f.input :private, boolean_style: :inline
-  %br
-  
-  = f.button :submit, class: 'btn btn-primary'
+  %p
+    = f.button :submit, class: 'btn btn-primary'
 
 :javascript
   var opts = {
   container: 'epiceditor',
   textarea: 'wiki_content',
-  basePath: '/epiceditor'
+  basePath: '/epiceditor',
+  autogrow: true
   }
   var editor = new EpicEditor(opts).load();
