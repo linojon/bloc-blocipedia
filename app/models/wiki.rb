@@ -8,7 +8,7 @@ class Wiki < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  scope :not_private, -> { where(private: false) }
+  scope :not_private, -> { where(private: [nil,false]) }
   scope :is_private,  -> { where(private: true) }
 
   def owner
